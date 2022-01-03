@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: acm.bst
+Database file #1: refs.bib
+Warning--to sort, need author or key in tephra
+Warning--to sort, need author or key in cockroach
+Warning--to sort, need author or key in hbase
+Warning--to sort, need author or key in emr
+Warning--to sort, need author or key in Forrester2017
+Warning--to sort, need author or key in phoenix
+Warning--to sort, need author or key in chatter
+Warning--to sort, need author or key in opentsdb
+Warning--to sort, need author or key in omid
+Warning--to sort, need author or key in hive
+Warning--to sort, need author or key in impala
+Warning--to sort, need author or key in PhoenixUseCases
+Warning--to sort, need author or key in yahoojapanhbase
+Warning--to sort, need author or key in rocksdb
+Warning--empty booktitle in Kulkarni2014LogicalPC
+Warning--can't use both volume and number fields in PattersonENAA12
+You've used 40 entries,
+            2253 wiz_defined-function locations,
+            746 strings with 12196 characters,
+and the built_in function-call counts, 15878 in all, are:
+= -- 1446
+> -- 901
+< -- 0
++ -- 376
+- -- 334
+* -- 1189
+:= -- 2357
+add.period$ -- 105
+call.type$ -- 40
+change.case$ -- 287
+chr.to.int$ -- 0
+cite$ -- 56
+duplicate$ -- 626
+empty$ -- 1274
+format.name$ -- 334
+if$ -- 3427
+int.to.chr$ -- 0
+int.to.str$ -- 40
+missing$ -- 27
+newline$ -- 188
+num.names$ -- 52
+pop$ -- 425
+preamble$ -- 1
+purify$ -- 247
+quote$ -- 0
+skip$ -- 488
+stack$ -- 0
+substring$ -- 766
+swap$ -- 198
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 158
+warning$ -- 16
+while$ -- 107
+width$ -- 42
+write$ -- 371
+(There were 16 warnings)

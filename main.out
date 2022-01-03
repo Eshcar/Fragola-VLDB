@@ -1,0 +1,29 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Challenges}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Evolving Omid for public clouds}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Background}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Data store API}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Transaction semantics}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{TPS operation schema}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Big data platforms}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Low-Latency Transactions}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Omid LL design choices}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Omid LL algorithm}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.1}{High availability}{subsection.3.2}% 12
+\BOOKMARK [1][-]{section.4}{Fast-Path Transactions}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{API}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Generic fast path algorithm}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Implementation and optimization}{section.4}% 16
+\BOOKMARK [1][-]{section.5}{Evaluation}{}% 17
+\BOOKMARK [2][-]{subsection.5.1}{Methodology}{section.5}% 18
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Evaluated systems}{subsection.5.1}% 19
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Experiment setup}{subsection.5.1}% 20
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Workload}{subsection.5.1}% 21
+\BOOKMARK [2][-]{subsection.5.2}{Results}{section.5}% 22
+\BOOKMARK [1][-]{section.6}{SQL Oriented Features}{}% 23
+\BOOKMARK [2][-]{subsection.6.1}{Index construction}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.2}{Extended snapshot semantics}{section.6}% 25
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 26
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 27
+\BOOKMARK [1][-]{section.9}{Additional Authors}{}% 28
+\BOOKMARK [1][-]{section.10}{References}{}% 29

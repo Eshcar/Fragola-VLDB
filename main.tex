@@ -1,0 +1,198 @@
+\documentclass{vldb}
+%\documentclass[letterpaper,twocolumn,10pt]{article}
+%\usepackage{times}
+\usepackage{epsfig,endnotes}
+
+%========================
+%  Packages
+%========================
+
+\usepackage{graphicx,url,color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}  %<---- for a different "look" in theorems (theorem word in bold, etc.) %ACM conflict with proof definition?
+%\usepackage{subfigure}
+%\usepackage[tight,footnotesize]{subfigure}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{times}
+\usepackage[outercaption]{sidecap}    
+
+
+%\usepackage{todonotes}
+%\usepackage[normalem]{ulem} %strikethrough: \sout{Hello World}
+%\usepackage{lastpage} %for number of pages
+%\usepackage{xspace}
+%\usepackage{multirow}
+%\usepackage{balance}
+
+\usepackage[colorlinks=true,allcolors=blue,breaklinks]{hyperref}   % hyperlinks, including DOIs and URLs in bibliography
+\usepackage{subcaption}
+%\usepackage{caption}
+\usepackage{float}
+%\usepackage{floatrow}
+
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+
+% Include information below and uncomment for camera ready
+\vldbTitle{Taking Omid to the Clouds: Fast, Scalable Transactions for Real-Time Cloud Analytics}
+\vldbAuthors{Shacham et al}
+\vldbDOI{https://doi.org/TBD}
+
+
+%========================
+%  Macros
+%========================
+
+\newcommand{\code}[1]{\textsf{\fontsize{9}{11}\selectfont #1}}
+
+\newcommand{\inred}[1]{{\color{red}{#1}}}
+\newcommand{\remove}[1]{}
+\newcommand{\Idit}[1]{[[\inred{Idit: #1}]]}
+\newcommand{\Yoni}[1]{[\inred{Yoni: #1}]}
+\newcommand{\tb}{\hspace{10mm}}
+
+\newcommand{\sys}{Omid~FP}
+\newcommand{\sysll}{Omid~LL}
+\newcommand{\syspc}{Omid~2PC}
+
+\newcommand{\speedup}[1]{#1$\times$}
+\newcommand{\tuple}[1]{\ensuremath{\langle \mbox{#1} \rangle}}
+
+\newcommand{\mypara}[1]{ \vspace{8pt} \noindent{\bf #1}\hspace{6pt}}
+
+%========================
+\begin{document}
+
+\date{}
+
+\title{Taking Omid to the Clouds: \\ 
+Fast,  Scalable Transactions for Real-Time Cloud Analytics }
+
+\numberofauthors{6} 
+\author{
+\alignauthor
+Ohad Shacham\\
+       \affaddr{Yahoo Research}
+       \email{}
+\alignauthor
+Yonatan Gottesman\\ %\footnotemark[1]
+       \affaddr{Yahoo Research}
+       \email{}
+\alignauthor
+Aran Bergman\\
+       \affaddr{Technion}
+       \email{}
+\and
+\alignauthor
+Edward Bortnikov\\
+       \affaddr{Yahoo Research}
+       \email{}
+\alignauthor
+Eshcar Hillel\\
+       \affaddr{Yahoo Research}
+       \email{}
+\alignauthor
+Idit Keidar\\
+       \affaddr{Technion and Yahoo Research}
+       \email{}
+} % end author
+
+
+\maketitle
+
+%=========================================================================
+%  Abstract
+%=========================================================================
+
+\begin{abstract}
+
+We describe how we evolve Omid, a transaction processing system for Apache HBase, 
+to power Apache Phoenix, a cloud-grade real-time SQL analytics engine.  
+
+Omid was originally designed for data processing pipelines at Yahoo, which are, by and large, 
+%huge-scale 
+throughput-oriented monolithic NoSQL applications. 
+%Evolving Omid into 
+Providing a platform 
+to support 
+%a variety of 
+converged real-time transaction processing and analytics applications --
+dubbed {\em translytics} --  
+introduces new functional and performance requirements. For example, SQL 
+support is key for developer productivity, multi-tenancy is essential for cloud deployment, 
+and latency is cardinal for just-in-time data ingestion and analytics insights.
+% in a variety of applications. 
+
+We discuss our efforts to adapt Omid to these new domains, 
+as part of 
+%which emerged in 
+the process of integrating it into Phoenix as the transaction processing backend. A central piece
+of our work is latency reduction in Omid's protocol, which also improves  scalability.  
+Under light load, the new protocol's latency is 4x to 5x smaller than the legacy Omid's, whereas 
+under increased loads it is an order of magnitude faster. We further describe a \emph{fast path} f
+protocol or single-key transactions, which enables processing them almost as fast 
+as native HBase operations.
+
+\end{abstract}
+
+%========================
+
+\section{Introduction} \label{sec:intro}
+\input{intro} 
+
+\section{Background} \label{sec:api}
+\input{api}
+
+\section{Low-Latency Transactions} \label{sec:ll}
+\input{lorra}
+\input{implementation}
+
+\section{Fast-Path Transactions}
+\label{sec:alg}
+\input{fast-path}
+
+\section{Evaluation} \label{sec:eval}
+\input{evaluation}
+
+\section{SQL Oriented Features} \label{sec:sql}
+\input{sql}
+
+\section{Related Work} \label{sec:related}
+\input{related}
+
+\section{Conclusion} \label{sec:conclusions}
+
+As transaction processing services begin to be used in 
+new application domains, low transaction latency and rich SQL semantics
+become important considerations. In addition, public cloud deployments 
+necessitate solutions compatible with multi-tenancy.
+Motivated by such use cases we evolved Omid for cloud use.
+
+As part of this evolution, we
+improved Omid's protocol to reduce latency (by 4x to 5x under light load
+and an order of magnitude under heavy load) and improve throughput scalability.
+%
+We further designed a generic \emph{fast path} for single-key transactions, 
+which executes them  almost as fast as native HBase operations (in terms of 
+both throughput and latency), while preserving
+transactional semantics relative to longer transactions.
+Our fast path algorithm is not Omid-specific, and can be similarly supported in 
+other transaction management systems.
+Our implementation of the fast path in \sys\ can process single-key
+transactions  at a virtually unbounded rate (thanks to HBase's horizontal 
+scalability), and improves the latency of short transactions
+by another 3x--5x under high load.
+
+We have extended Omid with functionalities required in SQL engines, namely 
+secondary index construction and multi-snapshot semantics. 
+We have successfully integrated it into the Apache Phoenix translytics engine. 
+
+\subsection*{Acknowledgments}
+We thank James Taylor for fruitful discussions. 
+
+\bibliographystyle{acm}
+
+\bibliography{refs}
+
+\end{document}
